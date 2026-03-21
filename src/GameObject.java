@@ -16,6 +16,9 @@ public class GameObject {
         this.image = new Texture(imagePath);
     }
 
+    public void move(double deltaTime){
+
+    }
 
     public void draw(SpriteBatch batch) {
         batch.draw(image, (int) x, (int) y, width, height);
