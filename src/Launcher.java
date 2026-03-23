@@ -3,6 +3,8 @@ import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 
 public class Launcher
 {
+    public static int gameWidth = 800;
+    public static int gameHeight = 500;
     public static void main (String[] args) {
         // To start a LibGDX program, this method:
         // (1) creates an instance of the game
@@ -14,10 +16,10 @@ public class Launcher
     private static Lwjgl3ApplicationConfiguration getDefaultConfiguration() {
         Lwjgl3ApplicationConfiguration configuration = new Lwjgl3ApplicationConfiguration();
         
-        configuration.setTitle("Game Dev");
+        configuration.setTitle("Parry Game");
 
         //Set window size
-        configuration.setWindowedMode(800, 500);
+        configuration.setWindowedMode(gameWidth, gameHeight);
 
         //Set window icon
         configuration.setWindowIcon("assets/fish_blue.png");

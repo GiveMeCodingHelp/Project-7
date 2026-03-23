@@ -13,6 +13,8 @@ public class MyGame extends ApplicationAdapter {
         batch = new SpriteBatch();
         activeObjects = new ArrayList<GameObject>();
 
+        Player plr = new Player();
+        activeObjects.add(plr);
         
     }
 
@@ -26,7 +28,7 @@ public class MyGame extends ApplicationAdapter {
         //double for sum bs reason
         double deltaTime = (double) Gdx.graphics.getDeltaTime();
 
-        //Moves each object
+        //Updates (kept name move for simplicity each object
         for (GameObject e : activeObjects){
             e.move(deltaTime);
         }

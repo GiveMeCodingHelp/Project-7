@@ -2,10 +2,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class GameObject {
-    private double x;
-    private double y;
-    private int width;
-    private int height;
+    protected double x;
+    protected double y;
+    protected int width;
+    protected int height;
     private Texture image;
 
     public GameObject(double x, double y, int width, int height, String imagePath) {
@@ -14,6 +14,10 @@ public class GameObject {
         this.width = width;
         this.height = height;
         this.image = new Texture(imagePath);
+    }
+
+    public int getWidth(){
+        return width;
     }
 
     public void move(double deltaTime){
