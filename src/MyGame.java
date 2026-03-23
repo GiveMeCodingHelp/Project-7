@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class MyGame extends ApplicationAdapter {
     private SpriteBatch batch;
     private ArrayList<GameObject> activeObjects;
+    public static int score = 0;
 
     @Override
     public void create() {
@@ -15,6 +16,9 @@ public class MyGame extends ApplicationAdapter {
 
         Player plr = new Player();
         activeObjects.add(plr);
+
+        Enemy enemy = new Enemy();
+        activeObjects.add(enemy);
         
     }
 

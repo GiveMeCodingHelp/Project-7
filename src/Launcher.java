@@ -1,6 +1,9 @@
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 
+import java.io.File;
+import java.util.Arrays;
+
 public class Launcher
 {
     public static int gameWidth = 800;
@@ -22,7 +25,7 @@ public class Launcher
         configuration.setWindowedMode(gameWidth, gameHeight);
 
         //Set window icon
-        configuration.setWindowIcon("assets/fish_blue.png");
+        configuration.setWindowIcon("assets/plrframes/fish_blue.png");
         
         // Vsync limits the frames per second to what your hardware can display, and helps eliminate
         // screen tearing. This setting doesn't always work on Linux, so the line after is a safeguard.

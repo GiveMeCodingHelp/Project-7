@@ -1,0 +1,31 @@
+import java.io.File;
+import java.util.Arrays;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
+public class Enemy extends GameObject{
+    private volatile boolean cooldown = false;
+    private ScheduledExecutorService scheduler;
+    //creates player and centers to bottom of screen (gets paths from plrframes directory)
+    public Enemy(){
+        super(0,0,100,100, Arrays.stream(new File("assets/enemyframes").list())
+                .map(element ->  "assets/enemyframes/" + element)
+                .toArray(String[]::new));
+        super.x = (double) (Launcher.gameWidth - width) / 2;
+        super.y = Launcher.gameHeight - 200;
+        scheduler = Executors.newScheduledThreadPool(1);
+    }
+
+    private void loop(){
+        scheduler.schedule(() -> {
+
+            loop();
+        }, (long) ((Math.random() * 3000) / (1 + (double) MyGame.score / 100)), TimeUnit.MILLISECONDS);
+    }
+
+    @Override
+    public void move(double deltaTime) {
+
+    }
+}
