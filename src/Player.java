@@ -23,6 +23,7 @@ public class Player extends GameObject{
     public boolean getParry(){
         return this.isParry;
     }
+    public void forceParry(){ isParry = false; }
 
     @Override
     public void move(double deltaTime) {

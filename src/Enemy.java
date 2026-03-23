@@ -5,7 +5,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class Enemy extends GameObject{
-    private volatile boolean cooldown = false;
+    private volatile boolean isAttacking = false;
     private ScheduledExecutorService scheduler;
     //creates player and centers to bottom of screen (gets paths from plrframes directory)
     public Enemy(){
@@ -14,18 +14,33 @@ public class Enemy extends GameObject{
                 .toArray(String[]::new));
         super.x = (double) (Launcher.gameWidth - width) / 2;
         super.y = Launcher.gameHeight - 200;
-        scheduler = Executors.newScheduledThreadPool(1);
+        scheduler = Executors.newScheduledThreadPool(2);
+        loop();
     }
 
     private void loop(){
         scheduler.schedule(() -> {
-
+            playAnim();
             loop();
         }, (long) ((Math.random() * 3000) / (1 + (double) MyGame.score / 100)), TimeUnit.MILLISECONDS);
     }
 
-    @Override
-    public void move(double deltaTime) {
-
+    public boolean getAttack(){
+        return this.isAttacking;
     }
+    public void forceAttack(){ isAttacking = false; }
+
+    private void playAnim(){
+        for (int i = 0; i < getFrameCount(); i++){
+            incrementFrames();
+            if (i == 3){
+                isAttacking = true;
+            }
+            try {
+                Thread.sleep(83);
+            } catch (InterruptedException e) {}
+        }
+        isAttacking = false;
+    }
+
 }

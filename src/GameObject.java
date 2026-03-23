@@ -22,9 +22,18 @@ public class GameObject {
         }
     }
 
-    public int getWidth(){
-        return width;
+    public int getFrameCount(){
+        return frames.size();
     }
+
+    public void incrementFrames(){
+        if (frame < frames.size() - 1){
+            frame++;
+        } else {
+            frame = 0;
+        }
+    }
+
 
     public void move(double deltaTime){
 
