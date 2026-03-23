@@ -34,6 +34,11 @@ public class GameObject {
         }
     }
 
+    //to be overwritten by subclasses
+    public boolean getState(){ return false; }
+
+    public void forceState(){}
+
 
     public void move(double deltaTime){
 

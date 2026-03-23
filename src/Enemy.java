@@ -25,10 +25,13 @@ public class Enemy extends GameObject{
         }, (long) ((Math.random() * 3000) / (1 + (double) MyGame.score / 100)), TimeUnit.MILLISECONDS);
     }
 
-    public boolean getAttack(){
+    @Override
+    public boolean getState(){
         return this.isAttacking;
     }
-    public void forceAttack(){ isAttacking = false; }
+
+    @Override
+    public void forceState(){ isAttacking = false; }
 
     private void playAnim(){
         for (int i = 0; i < getFrameCount(); i++){

@@ -47,6 +47,17 @@ public class MyGame extends ApplicationAdapter {
 
         batch.end();
 
+       if (activeObjects.getFirst().getState() && activeObjects.get(1).getState()){
+                activeObjects.get(1).forceState();
+                activeObjects.getFirst().forceState();
+                score++;
+                System.out.println(score);
+       } else if (activeObjects.get(1).getState()) {
+           activeObjects.get(1).forceState();
+           activeObjects.getFirst().forceState();
+           System.out.println("You died");
+       }
+
     }
     
     @Override

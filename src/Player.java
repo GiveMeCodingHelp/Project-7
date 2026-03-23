@@ -20,10 +20,22 @@ public class Player extends GameObject{
         scheduler = Executors.newScheduledThreadPool(1);
     }
 
-    public boolean getParry(){
+    @Override
+    public boolean getState(){
         return this.isParry;
     }
-    public void forceParry(){ isParry = false; }
+
+    @Override
+    public void forceState(){ this.isParry = false; }
+
+    private void playAnim(){
+        for (int i = 0; i < getFrameCount(); i++){
+            incrementFrames();
+            try {
+                Thread.sleep(83);
+            } catch (InterruptedException e) {}
+        }
+    }
 
     @Override
     public void move(double deltaTime) {
@@ -31,12 +43,13 @@ public class Player extends GameObject{
             isParry = true;
             cooldown = true;
             scheduler.schedule(() -> {
+                playAnim();
                 isParry = false;
                 try {
                     Thread.sleep(200);
                 } catch (InterruptedException e){}
                 cooldown = false;
-            }, 800, TimeUnit.MILLISECONDS);
+            }, 0, TimeUnit.MILLISECONDS);
         }
     }
 }
