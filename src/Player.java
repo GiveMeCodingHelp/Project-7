@@ -32,7 +32,7 @@ public class Player extends GameObject{
         for (int i = 0; i < getFrameCount(); i++){
             incrementFrames();
             try {
-                Thread.sleep(83);
+                Thread.sleep(100);
             } catch (InterruptedException e) {}
         }
     }

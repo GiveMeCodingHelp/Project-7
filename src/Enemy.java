@@ -40,7 +40,7 @@ public class Enemy extends GameObject{
                 isAttacking = true;
             }
             try {
-                Thread.sleep(83);
+                Thread.sleep(100);
             } catch (InterruptedException e) {}
         }
         isAttacking = false;

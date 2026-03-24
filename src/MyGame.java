@@ -1,10 +1,15 @@
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.backends.lwjgl3.audio.Mp3.Sound;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import java.util.ArrayList;
 
 public class MyGame extends ApplicationAdapter {
+  
+    Sound parrySound = (Sound) Gdx.audio.newSound(new FileHandle("assets/sounds/parry.mp3"));
+
     private SpriteBatch batch;
     private ArrayList<GameObject> activeObjects;
     public static int score = 0;
@@ -47,15 +52,17 @@ public class MyGame extends ApplicationAdapter {
 
         batch.end();
 
-       if (activeObjects.getFirst().getState() && activeObjects.get(1).getState()){
+       if (activeObjects.get(0).getState() && activeObjects.get(1).getState()){
                 activeObjects.get(1).forceState();
-                activeObjects.getFirst().forceState();
+                activeObjects.get(0).forceState();
+                parrySound.play(); 
                 score++;
                 System.out.println(score);
        } else if (activeObjects.get(1).getState()) {
            activeObjects.get(1).forceState();
-           activeObjects.getFirst().forceState();
+           activeObjects.get(0).forceState();
            System.out.println("You died");
+           score = 0;
        }
 
     }
