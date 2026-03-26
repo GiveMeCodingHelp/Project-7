@@ -22,7 +22,7 @@ public class Enemy extends GameObject{
         scheduler.schedule(() -> {
             playAnim();
             loop();
-        }, (long) ((Math.random() * 3000) / (1 + (double) MyGame.score / 100)), TimeUnit.MILLISECONDS);
+        }, (long) (((Math.random() * 3000) + 500) / (1 + (double) MyGame.score / 100)), TimeUnit.MILLISECONDS);
     }
 
     @Override
