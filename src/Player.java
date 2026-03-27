@@ -46,7 +46,7 @@ public class Player extends GameObject{
                 playAnim();
                 isParry = false;
                 try {
-                    Thread.sleep(1000); // 1 Second endlag to Parry
+                    Thread.sleep(500); // 0.5 Second endlag to Parry
                 } catch (InterruptedException e){}
                 cooldown = false;
             }, 0, TimeUnit.MILLISECONDS);
