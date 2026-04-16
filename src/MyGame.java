@@ -1,6 +1,7 @@
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -17,10 +18,11 @@ public class MyGame extends ApplicationAdapter {
     public static String action = "";
     public Sound parrySound;
     public Sound deathSound;
-
+    public Music bgMusic;
 
     @Override
     public void create() {
+       // bgMusic = Gdx.audio.newMusic(Gdx.files.internal("background.mp3"));
         parrySound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/parry.ogg"));
         deathSound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/death.ogg"));
 
@@ -55,6 +57,10 @@ public class MyGame extends ApplicationAdapter {
         
         //Draw all objects
         batch.begin();
+
+       // bgMusic.setLooping(true); // Makes the song repeat
+
+       // bgMusic.play();
 
         for (GameObject e : activeObjects){
             e.draw(batch);
