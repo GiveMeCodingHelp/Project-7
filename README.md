@@ -8,7 +8,7 @@
 
 ## 🎮 Game Description
 Parry the enemies attack, survive as long as you can. Be careful the game gets faster over time!
-
+Note: Parry when you see the enemy fish start moving!
 ## 🕹️ Controls
 **[F]** : PARRY
 
