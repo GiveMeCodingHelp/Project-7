@@ -1,11 +1,15 @@
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import java.io.FileWriter;
 import java.util.ArrayList;
+import java.io.File;
+import java.io.Writer;
+import java.util.Scanner;
 
 public class MyGame extends ApplicationAdapter {
 
@@ -13,10 +17,33 @@ public class MyGame extends ApplicationAdapter {
     private BitmapFont scoreFont;
     private ArrayList<GameObject> activeObjects;
     public static int score = 0;
-    private int bestScore = 0;
-    public static String action = "";
-    public Sound parrySound;
-    public Sound deathSound;
+    private int bestScore = getHighScore();
+    private static String action = "";
+    private Sound parrySound;
+    private Sound deathSound;
+
+    private int getHighScore() {
+        try {
+            Scanner scan = new Scanner(new File("src/BestScore.txt"));
+            int gotten = Integer.parseInt(scan.nextLine());
+            scan.close();
+           // System.out.println(gotten);
+            return gotten;
+        } catch (Exception e) {
+            System.out.println("error");
+            return -1;
+        }
+    }
+
+    private void saveHighScore(int newScore) {
+        try {
+            Writer write = new FileWriter("src/BestScore.txt");
+            write.write(Integer.toString(newScore));
+            write.close();
+        } catch (Exception e) {
+
+        }
+    }
 
 
     @Override
@@ -72,14 +99,17 @@ public class MyGame extends ApplicationAdapter {
                 parrySound.play(); 
                 score++;
                 action = "Parry! x" + score;
-                System.out.println(score);
+                //System.out.println(score);
        } else if (activeObjects.get(1).getState()) {
            activeObjects.get(1).forceState();
            activeObjects.get(0).forceState();
            action = "You died";
-           System.out.println("You died");
+           //System.out.println("You died");
            deathSound.play();
-           if (score > bestScore){bestScore = score;}
+           if (score > bestScore){
+               bestScore = score;
+               saveHighScore(bestScore);
+           }
            score = 0;
        }
 
